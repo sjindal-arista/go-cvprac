@@ -1,0 +1,41 @@
+#!/usr/bin/env groovy
+
+/**
+ * Declarative Jenkinsfile
+ */
+ pipeline {
+    agent {
+        docker {
+            image 'golang'
+            label 'ui-systest'
+        }
+    }
+    stages {
+        stage('Clone Repo') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'make bootstrap'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'make build'
+                }
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'make unittest'
+                }
+            }
+        }
+    }
+}
