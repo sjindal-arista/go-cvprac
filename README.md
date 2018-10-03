@@ -5,10 +5,10 @@
 1. [Overview](#overview)
 2. [Requirements](#requirements)
 3. [Installation](#installation)
-4. [Upgrading](#upgrading)
-5. [Usage](#usage)
-6. [Development](#development)
-7. [Testing](#testing)
+4. [Usage](#usage)
+5. [Development](#development)
+6. [Testing](#testing)
+7. [Versioning](#versioning)
 8. [Contributing](#contributing)
 9. [Support](#support)
 10. [License](#license)
@@ -30,23 +30,20 @@ If you would like to spin your own version of a client, then you only need to im
 * Go 1.6.3+
 
 ## Installation
-First, it is assumed you have a standard Go workspace, as described in http://golang.org/doc/code.html, with proper GOPATH set. 
+First, it is assumed you have a standard Go workspace, as described in http://golang.org/doc/code.html, with proper GOPATH set.
+
+Please refer section [Versioning](#versioning) for detailed info.
+
 To download and install go-cvprac:
 
 ```bash
-$ go get github.com/aristanetworks/go-cvprac
+$ go get -u gopkg.in/aristanetworks/go-cvprac.v1
 ```
 
 After setting up Go and installing go-cvprac, any required build tools can be installed by bootstrapping your environment via:
 
 ```bash
 $ make bootstrap
-```
-
-## Upgrading
-
-```bash
-$ go get -u github.com/aristanetworks/go-cvprac
 ```
 
 ## Usage
@@ -62,7 +59,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/aristanetworks/go-cvprac/client"
+	"gopkg.in/aristanetworks/go-cvprac.v1/client"
 )
 
 func main() {
@@ -96,14 +93,14 @@ type ClientInterface interface {
 }
 ```
 
-You then can access/interact with CVP using your clients underlying behavior. Example: 
+You then can access/interact with CVP using your clients underlying behavior. Example:
 
 ```golang
 import (
 	"fmt"
 	"log"
 
-	"github.com/aristanetworks/go-cvprac/api"
+	"gopkg.in/aristanetworks/go-cvprac.v1/api"
 )
 
 type YourCustomClient struct {
@@ -128,7 +125,7 @@ cvpClient.Login(user, passwd)
 ## Development
 
 Please refer to Contributing section on contribution guidelines.
-To install the needed packages for lint/vet/etc. run the bootstrap provided:  
+To install the needed packages for lint/vet/etc. run the bootstrap provided:
 
 ```bash
 $ make bootstrap
@@ -164,9 +161,15 @@ System Tests: TestXXX_SystemTest(t *testing.T){...
 
 Any tests written must conform to this standard.
 
+## Versioning
+
+Releases are done according to [Semantic Versioning](https://semver.org/)
+
+* gopkg.in/aristanetworks/go-cvprac.v{X} points to appropriate tagged versions; {X} denotes version series number and it's a stable release for production use. For e.g. gopkg.in/arsitanetworks/go-cvprac.v1
+
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/aristanetworks/go-cvprac). 
+Bug reports and pull requests are welcome on [GitHub](https://github.com/aristanetworks/go-cvprac).
 Please note that all contributions that modify the library behavior require corresponding test cases. Otherwise the pull request will be rejected.
 
 This project is intended to be a safe, welcoming space for collaboration, and
